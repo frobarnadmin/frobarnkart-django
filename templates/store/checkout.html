@@ -8,7 +8,7 @@
 <div class="container">
 
 <!-- ============================ COMPONENT 1 ================================= -->
-<form action="" method="post">
+<form action="{% url 'place_order' %}" method="post">
     {% csrf_token %}
     <div class="row">
 
@@ -55,6 +55,7 @@
                           <label for="">City</label>
                           <input type="text" name="city" class="form-control" required>
                       </div>
+{#                        add zip code#}
                         <div class="col form-group">
                           <label for="">State</label>
                           <input type="text" name="state" class="form-control" required>
@@ -66,7 +67,7 @@
                     </div>
                         <div class="form-row">
                             <label for=""> Order Note </label>
-                                <textarea name="" id="" rows="3" class="form-control"></textarea>
+                                <textarea name="order_note" id="" rows="3" class="form-control"></textarea>
 
                         </div>
 

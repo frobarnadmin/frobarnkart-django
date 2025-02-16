@@ -37,6 +37,7 @@ class Order(models.Model):
     country = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
+    #add zipcode here
     order_note = models.CharField(max_length=100, blank=True)
     order_total = models.FloatField()
     tax = models.FloatField()
@@ -47,7 +48,7 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+        return self.first_name + " " + self.last_name
 
 
 class OrderProduct(models.Model):
