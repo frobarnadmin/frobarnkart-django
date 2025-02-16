@@ -5,12 +5,30 @@ from django.shortcuts import render, redirect
 
 from carts.models import CartItem
 from .forms import OrderForm
-from .models import Order
+from .models import Order, Payment
 
 import datetime
-
+import json
 
 def payments(request):
+    #this comes from json javascript from paypal
+    body = json.loads(request.body)
+    print(body)
+    order =Order.objects.get(user=request.user, is_ordered=False, order_number=body['orderID'])
+
+    payment = Payment(
+        user=request.user,
+        payment_id=body['transID'],
+        amount_paid=order.order_total,
+        payment_method=body['payment_method'],
+        status=body['status'],
+    )
+    payment.save()
+
+    #update the order
+    order.payment = payment
+    order.is_ordered = True
+    order.save()
     return render(request, 'orders/payments.html')
 
 # Create your views here.
