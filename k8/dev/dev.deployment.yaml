@@ -15,11 +15,34 @@ spec:
     spec:
       containers:
       - name: dev-frobarn
-        image: frobarn/kart:1.1
+        image: frobarn/kart:1.0
         ports:
         - containerPort: 8000
         env:
         - name: DJANGO_ENV
           value: "dev"
         - name: DJANGO_SETTINGS_MODULE
-          value: "frobarnapp.settings.dev"
+          value: "frobarnkart.settings.dev"
+        - name: ALLOWED_HOSTS
+          value: "dev.frobarn.com"
+        - name: DEBUG
+          value: "True"
+        volumeMounts:
+        - name: staticfiles
+          mountPath: /app/staticfiles
+        - name: mediafiles
+          mountPath: /app/media
+
+        # Run collectstatic before starting Gunicorn
+        command:
+          - sh
+          - -c
+          - |
+            python manage.py collectstatic --noinput &&
+            gunicorn --bind 0.0.0.0:8000 frobarnkart.wsgi:application
+
+      volumes:
+      - name: staticfiles
+        emptyDir: {}
+      - name: mediafiles
+        emptyDir: {}

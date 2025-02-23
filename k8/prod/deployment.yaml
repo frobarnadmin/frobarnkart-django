@@ -15,11 +15,11 @@ spec:
     spec:
       containers:
       - name: prod-frobarn
-        image: frobarn/kart:1.1
+        image: frobarn/kart:1.0
         ports:
         - containerPort: 8000
         env:
         - name: DJANGO_ENV
           value: "prod"
         - name: DJANGO_SETTINGS_MODULE
-          value: "frobarnapp.settings.prod"
+          value: "frobarnkart.settings.prod"
