@@ -3,7 +3,7 @@ name: Frobarn Kart
 on:
   push:
     branches:
-      - dev
+      - deploy
 
 jobs:
   build:
