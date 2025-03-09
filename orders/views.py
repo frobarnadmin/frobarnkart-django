@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
@@ -73,8 +73,12 @@ def payments(request):
     send_email.send()
 
     # Send order number and transaction id back to sendData method via Json Method (java script in payments.html)
+    data = {
+        'order_number': order.order_number,
+        'transID': payment.payment_id,
+    }
 
-    return render(request, 'orders/payments.html')
+    return JsonResponse(data)
 
 # Create your views here.
 def place_order(request, total = 0, quantity = 0):
@@ -138,4 +142,7 @@ def place_order(request, total = 0, quantity = 0):
             return redirect('checkout')
 
 
+def order_complete(request):
+
+    return render(request, 'orders/order_complete.html') #g3t measured
 
