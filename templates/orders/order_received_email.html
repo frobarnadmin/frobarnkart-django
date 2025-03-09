@@ -13,6 +13,16 @@
             margin: 0;
             padding: 0;
         }
+        .cta {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 20px auto;
+            background: #4caf50;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+        }
         .email-container {
             max-width: 600px;
             margin: 20px auto;
@@ -59,14 +69,18 @@
 <body>
     <div class="email-container">
         <div class="header">
-            Confirm Your Registration
+            Your Frobarn Order #{{ order.order_number }} is now Complete!
         </div>
         <div class="content">
-            <p>Hey {{ user.first_name }},</p>
-            <p>Welcome! We're excited to have you on board. Please confirm your registration by clicking the button below.</p>
-            <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}" class="button">Activate Account</a>
-            <p>If you didn’t sign up for this account, please ignore this email.</p>
-            <p>Best regards,<br> The Frobarn Team</p>
+
+
+            <p>Great news! Your Frobarn order #{{ order.order_number }} is officially complete and it is time to get measured. <br>
+            Get ready to make a **bold statement**—because we don’t do ordinary. 😉</p>
+
+                <a href="#" class="cta">Click here to get measured </a>
+
+
+            <p>- The Frobarn Team</p>
         </div>
         <div class="footer">
             &copy; 2025 Frobarn. All rights reserved.
