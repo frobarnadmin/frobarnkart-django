@@ -56,6 +56,7 @@ class ReviewRating(models.Model):
     subject = models.CharField(max_length=200, blank=True)
     review = models.TextField(max_length=500, blank=True)
     rating = models.FloatField()
+    status = models.BooleanField(default=False)
     ip = models.GenericIPAddressField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
