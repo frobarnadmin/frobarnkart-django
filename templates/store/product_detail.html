@@ -52,28 +52,130 @@
 
 
 <hr>
+
+{% if single_product.variation_set.colors %}
             <div class="row">
-                <div class="item-option-select">
-                    <h6>Choose Color</h6>
-                        <select name="color" class="form-control" required>
-                        <option value="" disabled selected> Select </option>
-                        {% for i in single_product.variation_set.colors %}
-                        <option value="{{ i.variation_value | lower }}">{{ i.variation_value| capfirst  }}</option>
-                        {% endfor %}
-                        </select>
-                </div>
+            <div class="item-option-select">
+              <h6>Choose Color</h6>
+              <div class="color-options">
+                {% for i in single_product.variation_set.colors %}
+                  <label class="color-wrapper">
+                    <input type="radio" name="color" value="{{ i.variation_value|lower }}" required checked>
+                    <span class="color-circle" style="background-color: {{ i.variation_value|lower }}"></span>
+                  </label>
+                {% endfor %}
+              </div>
+            </div>
             </div> <!-- row.// -->
-            <div class="row">
-                <div class="item-option-select">
-                    <h6>Select Size</h6>
-                        <select name="size" class="form-control" required>
-                        <option value="" disabled selected> Select </option>
-                        {% for i in single_product.variation_set.sizes %}
-                        <option value="{{ i.variation_value | lower }}">{{ i.variation_value| capfirst  }}</option>
-                        {% endfor %}
-                        </select>
-                </div>
-            </div> <!-- row.// -->
+{% endif %}
+{% if single_product.variation_set.cuffs %}
+    <div class="row">
+    <div class="item-option-select">
+  <h6>Select Cuffs</h6>
+  <div class="cuff-options">
+    {% for i in single_product.variation_set.cuffs %}
+      <label class="cuff-label">
+        <input type="radio" name="cuff" value="{{ i.variation_value|lower }}" required checked>
+        <img src="{{ i.image.url }}" alt="{{ i.variation_value|capfirst }}">
+        <span class="cuff-name">{{ i.variation_value|capfirst }}</span>
+      </label>
+    {% endfor %}
+  </div>
+</div>
+    </div>
+{% endif %}
+{% if single_product.variation_set.embroidery %}
+    <div class="row">
+    <div class="item-option-select">
+  <h6>Select Embroidery</h6>
+  <div class="cuff-options">
+    {% for i in single_product.variation_set.embroidery %}
+      <label class="cuff-label">
+        <input type="radio" name="embroidery" value="{{ i.variation_value|lower }}" required checked>
+        <img src="{{ i.image.url }}" alt="{{ i.variation_value|capfirst }}">
+        <span class="cuff-name">{{ i.variation_value|capfirst }}</span>
+      </label>
+    {% endfor %}
+  </div>
+</div>
+    </div>
+{% endif %}
+{% if single_product.variation_set.top_fit %}
+    <div class="row">
+    <div class="item-option-select">
+  <h6>Select Top Fit</h6>
+  <div class="top-length-options">
+    {% for i in single_product.variation_set.top_fit %}
+      <label class="top-length-label">
+        <input type="radio" name="top_fit" value="{{ i.variation_value|lower }}" required checked>
+        <img src="{{ i.image.url }}" alt="{{ i.variation_value|capfirst }}">
+        <span class="top-length-name">{{ i.variation_value|capfirst }}</span>
+      </label>
+    {% endfor %}
+  </div>
+</div>
+    </div>
+{% endif %}
+{% if single_product.variation_set.top_length %}
+    <div class="row">
+    <div class="item-option-select">
+  <h6>Select Top Length</h6>
+  <div class="top-length-options">
+    {% for i in single_product.variation_set.top_length %}
+      <label class="top-length-label">
+        <input type="radio" name="top_length" value="{{ i.variation_value|lower }}" required checked>
+        <img src="{{ i.image.url }}" alt="{{ i.variation_value|capfirst }}">
+        <span class="top-length-name">{{ i.variation_value|capfirst }}</span>
+      </label>
+    {% endfor %}
+  </div>
+</div>
+    </div>
+{% endif %}
+{% if single_product.variation_set.leg_opening %}
+    <div class="row">
+    <div class="item-option-select">
+  <h6>Select Leg Opening</h6>
+  <div class="cuff-options">
+    {% for i in single_product.variation_set.leg_opening %}
+      <label class="cuff-label">
+        <input type="radio" name="leg_opening" value="{{ i.variation_value|lower }}" required checked>
+        <img src="{{ i.image.url }}" alt="{{ i.variation_value|capfirst }}">
+        <span class="cuff-name">{{ i.variation_value|capfirst }}</span>
+      </label>
+    {% endfor %}
+  </div>
+</div>
+    </div>
+{% endif %}
+{% if single_product.variation_set.fabric %}
+    <div class="row">
+    <div class="item-option-select">
+  <h6>Select Fabric</h6>
+  <div class="cuff-options">
+    {% for i in single_product.variation_set.fabric %}
+      <label class="cuff-label">
+        <input type="radio" name="fabric" value="{{ i.variation_value|lower }}" required checked>
+        <img src="{{ i.image.url }}" alt="{{ i.variation_value|capfirst }}">
+        <span class="cuff-name">{{ i.variation_value|capfirst }}</span>
+           <a href="{{ i.video_url }}" target="_blank" rel="noopener noreferrer"> Watch video </a>
+      </label>
+    {% endfor %}
+  </div>
+</div>
+    </div>
+{% endif %}
+{#            <div class="row">#}
+{#                <div class="item-option-select">#}
+{#                    <h6>Select Size</h6>#}
+{#                        <select name="size" class="form-control" required>#}
+{#                        <option value="" disabled selected> Select </option>#}
+{#                        {% for i in single_product.variation_set.sizes %}#}
+{#                        <option value="{{ i.variation_value | lower }}">{{ i.variation_value| capfirst  }}</option>#}
+{#                        {% endfor %}#}
+{#                        </select>#}
+{#                </div>#}
+{#            </div> <!-- row.// -->#}
             <hr>
             {% if single_product.stock <= 0 %}
                 <h5 class="text-danger"> Out of Stock </h5>

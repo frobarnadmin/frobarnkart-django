@@ -61,3 +61,171 @@ ul.thumb li img{
     height: 80px;
     border: 1px solid grey;
 }
+
+.color-options {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.color-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.color-wrapper input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Colored circle */
+.color-circle {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: gray; /* Fallback */
+  position: relative;
+  z-index: 1;
+}
+
+/* Ring using ::after when selected */
+.color-circle::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  transition: border 0.2s ease;
+}
+
+/* Show ring only when selected */
+.color-wrapper input[type="radio"]:checked + .color-circle::after {
+  border-color: #444; /* or your preferred highlight color */
+}
+
+/*cuff starts here */
+.cuff-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.cuff-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  transition: border 0.3s ease;
+  position: relative;
+  width: 120px;
+}
+
+.cuff-label input[type="radio"] {
+  display: none;
+}
+
+.cuff-label img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+}
+
+.cuff-name {
+  margin-top: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* When selected */
+.cuff-label input[type="radio"]:checked + img {
+  border: 2px solid transparent;
+}
+
+.cuff-label input[type="radio"]:checked ~ .cuff-name::after {
+  content: "✔";
+  color: white;
+  background-color: black;
+  font-size: 12px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*top-length starts here */
+.top-length-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.top-length-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  transition: border 0.3s ease;
+  position: relative;
+  width: 120px;
+}
+
+.top-length-label input[type="radio"] {
+  display: none;
+}
+
+.top-length-label img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+}
+
+.top-length-name {
+  margin-top: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* When selected */
+.top-length-label input[type="radio"]:checked + img {
+  border: 2px solid transparent;
+}
+
+.top-length-label input[type="radio"]:checked ~ .top-length-name::after {
+  content: "✔";
+  color: white;
+  background-color: black;
+  font-size: 12px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

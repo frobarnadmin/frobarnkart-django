@@ -34,7 +34,7 @@ def add_cart(request, product_id):
                     variation = Variation.objects.get(product=product, variation_category__iexact=key,
                                                       variation_value__iexact=value)
                     product_variation.append(variation)
-                    # print(variation.variation_value, "  ", variation.variation_category)
+                    print(variation.variation_value, "  ", variation.variation_category)
 
                 except:
                     pass

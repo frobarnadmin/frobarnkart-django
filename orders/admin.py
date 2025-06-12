@@ -17,7 +17,7 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderedProductInline]
 
 class OrderProductAdmin(admin.ModelAdmin):
-    list_display = ['product', 'order', 'payment', 'user']
+    list_display = ['product', 'order', 'payment', 'user', 'created_at']
 
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Payment)

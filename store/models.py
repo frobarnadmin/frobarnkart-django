@@ -10,7 +10,7 @@ from django.db.models import Avg, Count
 class Product(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    description = models.TextField(max_length=500, blank=True)
+    description = models.TextField(max_length=2000, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     images = models.ImageField(upload_to='photos/products/', blank=True)
     stock = models.PositiveIntegerField(default=0)
@@ -48,16 +48,42 @@ class VariationManager(models.Manager):
     def sizes(self):
         return super(VariationManager, self).filter(variation_category = 'size', is_active=True)
 
+    def cuffs(self):
+        return super(VariationManager, self).filter(variation_category = 'cuff', is_active=True)
+
+    def top_length(self):
+        return super(VariationManager, self).filter(variation_category = 'top_length', is_active=True)
+
+    def leg_opening(self):
+        return super(VariationManager, self).filter(variation_category = 'leg_opening', is_active=True)
+
+    def fabric(self):
+        return super(VariationManager, self).filter(variation_category = 'fabric', is_active=True)
+
+    def top_fit(self):
+        return super(VariationManager, self).filter(variation_category = 'top_fit', is_active=True)
+
+    def embroidery(self):
+        return super(VariationManager, self).filter(variation_category = 'embroidery', is_active=True)
+
 #define your category variation here Frobarn
 variation_category_choice = (
     ('color', 'Color'),
     ('size', 'Size'),
+    ('cuff', 'Cuff'),
+    ('top_length', 'Top Length'),
+    ('leg_opening', 'Leg Opening'),
+    ('fabric', 'Fabric'),
+    ('top_fit', 'Top Fit'),
+    ('embroidery', 'Embroidery'),
 )
 
 class Variation(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     variation_category = models.CharField(max_length=200, choices=variation_category_choice)
     variation_value = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='variation_images/', blank=True)
+    video_url = models.URLField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     created_date = models.DateTimeField(auto_now=True)
 
