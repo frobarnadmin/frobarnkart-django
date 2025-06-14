@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section-content padding-y bg">
+{% include 'includes/alerts.html' %}
+<div class="container">
+	<div class="row">
+{% include 'includes/dashboard_sidebar.html' %}
+
+	<main class="col-md-9">
+
+		<article class="card">
+        <div class="position-absolute top-0 start-0 "><div class="d-flex gap-1 flex-column">
+            <span class="custom-badge  badge bg-success">{{ measurements_count }} measurements</span></div></div>
+		<header class="card-header">
+			<strong class="d-inline-block mr-3">Your measurments history | {{ measurements_count }} total</strong>
+            <br>All measurements are in inches
+		</header>
+
+		<div class="card-body">
+			<div class="row">
+
+                 <div class="col-md-12">
+                 <table class="table table-hover">
+  <thead>
+    <tr>
+              <th scope="col">Date</th>
+        <th scope="col">Order #</th>
+      <th scope="col">Neck</th>
+      <th scope="col">Chest</th>
+      <th scope="col">Waist</th>
+      <th scope="col">Stomach</th>
+              <th scope="col">Thigh Left</th>
+      <th scope="col">Thigh Right</th>
+
+    </tr>
+  </thead>
+  <tbody>
+ {% for measurement in measurements %}
+    <tr>
+          <td>{{ measurement.created_at }}</td>
+        <td>{{ measurement.order.order_number }}</td>
+      <td>{{ measurement.neck }}</td>
+      <td>{{ measurement.chest }}</td>
+      <td>{{ measurement.waist }}</td>
+        <td>{{ measurement.stomach }}</td>
+        <td>{{ measurement.thigh_left }}</td>
+        <td>{{ measurement.thigh_right }}</td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+                </div>
+
+
+			</div> <!-- row.// -->
+		</div> <!-- card-body .// -->
+
+		</article> <!-- order-group.// -->
+	</main>
+</div> <!-- row.// -->
+</div>
+
+
+</section>
+
+{% endblock %}
+
+
+=============

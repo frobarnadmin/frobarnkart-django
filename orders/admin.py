@@ -1,5 +1,5 @@
 from django.contrib import admin
-from orders.models import Order, Payment, OrderProduct
+from orders.models import Order, Payment, OrderProduct, UserMeasurement
 
 
 # Register your models here.
@@ -19,6 +19,23 @@ class OrderAdmin(admin.ModelAdmin):
 class OrderProductAdmin(admin.ModelAdmin):
     list_display = ['product', 'order', 'payment', 'user', 'created_at']
 
+class UserMeasurementAdmin(admin.ModelAdmin):
+    list_display = (
+        'order',
+        'user',
+        'neck',
+        'chest',
+        'waist',
+        'hips',
+        'inseam_to_ankle',
+        'created_at'
+    )
+    search_fields = ('user__username', 'user__email')  # Adjust based on Account model fields
+    list_filter = ('created_at',)
+    readonly_fields = ('created_at', 'updated_at')
+    ordering = ('-created_at',)
+
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Payment)
 admin.site.register(OrderProduct, OrderProductAdmin)
+admin.site.register(UserMeasurement, UserMeasurementAdmin)

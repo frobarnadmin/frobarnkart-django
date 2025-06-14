@@ -54,7 +54,7 @@ class Order(models.Model):
         return "%s %s" % (self.address_line_1, self.address_line_2)
 
     def __str__(self):
-        return self.first_name + " " + self.last_name
+        return self.first_name + " " + self.last_name + " " + self.order_number
 
 #ordered products model
 class OrderProduct(models.Model):
@@ -71,3 +71,44 @@ class OrderProduct(models.Model):
 
     def __str__(self):
         return self.product.product_name
+
+# remove blank and null = true for order at a later time
+class UserMeasurement(models.Model):
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='measurements')
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=True, null=True)
+    neck = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    chest = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    waist = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    stomach = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    trousers_waist = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    hips = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    thigh_right = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    thigh_left = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    knee_right = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    knee_left = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    armhole_right = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    armhole_left = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    bicep_left = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    bicep_right = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    wrist_right = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    wrist_left = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    crotch = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    arm_length_to_wrist = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    outside_leg_to_ground = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    inseam_to_ground = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    inseam_to_ankle = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    straight_shoulder = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    curve_shoulder = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    neck_to_chest = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    neck_to_waist_front = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    neck_to_waist_back = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    neck_to_crotch_backlong = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    neck_to_middle_hand_frontlong = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    neck_to_knee = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    neck_high_to_knee = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user}'s Measurements"

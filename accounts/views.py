@@ -14,6 +14,7 @@ from accounts.forms import RegistrationForm, UserForm, UserProfileForm
 from accounts.models import Account, UserProfile
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
+from orders.models import UserMeasurement
 
 import requests
 
@@ -294,3 +295,12 @@ def order_detail(request, order_id):
         'subtotal': subtotal,
     }
     return render(request, 'accounts/order_detail.html', context)
+
+@login_required(login_url='login')
+def my_measurements(request):
+    measurements = UserMeasurement.objects.filter(user=request.user).order_by('-created_at')
+    context = {
+        'measurements_count': measurements.count(),
+        'measurements': measurements,
+    }
+    return render(request, 'accounts/my_measurements.html', context)
