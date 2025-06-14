@@ -104,9 +104,12 @@ DATABASES = {
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT', '5432'),
+        'PORT': os.getenv('DB_PORT'),
+        'OPTIONS': {},
     }
 }
+if not DEBUG:  # Or use any other condition to detect production
+    DATABASES['default']['OPTIONS']['sslmode'] = 'require'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
