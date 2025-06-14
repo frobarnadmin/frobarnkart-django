@@ -9,7 +9,9 @@ idna==3.10
 importlib-metadata==6.7.0
 packaging==24.0
 Pillow==9.5.0
+psycopg2-binary==2.9.9
 python-decouple==3.8
+python-dotenv==0.21.1
 pytz==2024.2
 requests==2.31.0
 six==1.17.0
