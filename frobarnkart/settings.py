@@ -27,7 +27,7 @@ SECRET_KEY = 'mj=-5abs+heulb%3bykh8c&uhy9rd7&n922^o2s(c83*p%enj9'
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'frobarnpa.pythonanywhere.com',
+    'frobarnpany.pythonanywhere.com',
     # You can add other domains/environments here:
 ]
 
@@ -88,10 +88,10 @@ AUTH_USER_MODEL = 'accounts.Account'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'frobarnpa$default',
-        'USER': 'frobarnpa',
+        'NAME': 'frobarnpany$default',
+        'USER': 'frobarnpany',
         'PASSWORD': 'SymHenry01',
-        'HOST': 'frobarnpa.mysql.pythonanywhere-services.com',
+        'HOST': 'frobarnpany.mysql.pythonanywhere-services.com',
     }
 }
 
