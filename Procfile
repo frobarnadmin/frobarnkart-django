@@ -1,0 +1,1 @@
+web: gunicorn frobarnkart.wsgi --log-file -
