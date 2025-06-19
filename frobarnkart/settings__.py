@@ -9,9 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import os
 from pathlib import Path
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -21,16 +19,16 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'mj=-5abs+heulb%3bykh8c&uhy9rd7&n922^o2s(c83*p%enj9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+# DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    'sea-turtle-app-6u8eg.ondigitalocean.app',
+    'frobarnpany.pythonanywhere.com',
     # You can add other domains/environments here:
-    'localhost',
-    '127.0.0.1',
 ]
 
 # Application definition
@@ -47,7 +45,7 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
-    'admin_honeypot',
+
 ]
 
 MIDDLEWARE = [
@@ -89,10 +87,22 @@ AUTH_USER_MODEL = 'accounts.Account'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'frobarnpany$default',
+        'USER': 'frobarnpany',
+        'PASSWORD': 'SymHenry01',
+        'HOST': 'frobarnpany.mysql.pythonanywhere-services.com',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 # Load environment variables from .env file
 # from dotenv import load_dotenv
 # load_dotenv(os.path.join(BASE_DIR, '.env'))
@@ -108,8 +118,8 @@ DATABASES = {
 #         'OPTIONS': {},
 #     }
 # }
-if not DEBUG:  # Or use any other condition to detect production
-    DATABASES['default']['OPTIONS']['sslmode'] = 'require'
+# if not DEBUG:  # Or use any other condition to detect production
+#     DATABASES['default']['OPTIONS']['sslmode'] = 'require'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -163,9 +173,14 @@ MESSAGE_TAGS = {
 }
 
 # SMTP Configuration
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+# EMAIL_HOST = config('EMAIL_HOST')
+# EMAIL_PORT = config('EMAIL_PORT', cast=int)
+# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+# EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'gshyllon@gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = 'lpsxlwojgnqzeqsb'
