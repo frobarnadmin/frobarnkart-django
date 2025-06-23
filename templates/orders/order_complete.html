@@ -8,6 +8,69 @@
 	<br>
 	<div class="text-center">
 		<a href="{% url 'store' %}" class="btn btn-success">Shop more</a>
+
+
+        <!-- Place the following code where you want the "Get My Size" button to appear on your website -->
+<button id="button-get-my-size" class="button-get-size">Get My Size / Get measured</button>
+<div id="abody-widget-element"></div>
+
+<script>
+function getCookie(name) {
+  const cookieValue = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith(name + '='));
+
+  if (cookieValue) {
+    return cookieValue.split('=')[1];
+  } else {
+    return null;
+  }
+}
+
+const abodyScanDataCookie = getCookie('abody_scan_data');
+console.log("abodyScanDataCookie", abodyScanDataCookie)
+
+
+let parsedCookieData = null;
+
+if (abodyScanDataCookie) {
+  try {
+    parsedCookieData = JSON.parse(decodeURIComponent(abodyScanDataCookie));
+    console.log("parsedCookieData", parsedCookieData)
+  } catch (error) {
+    console.error('Error parsing JSON from the cookie:', error);
+  }
+}
+
+const API_URL = "https://adminpartner.airoutfit.com/api/v1/web/scan?browser_uuid=undefined&scan_time=";
+if (parsedCookieData || API_URL) {
+  fetch(API_URL, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      console.log("response.json()===>", response.json())
+      return response.json();
+    })
+    .then((data) => {
+      console.log('API response:', data);
+    })
+    .catch((error) => {
+      console.error('Error calling the API:', error);
+    });
+} else {
+  console.error('No valid cookie data found.');
+}
+
+</script>
+
+
+
 	</div>
 </div>
 
@@ -111,6 +174,8 @@
         <!-- col-lg-12 end here -->
     </div>
     </div>
+
+<script src="https://abody-plugin.airoutfit.com/abody-plugin.js"></script>
 </body></html>
 
 {% endblock %}
