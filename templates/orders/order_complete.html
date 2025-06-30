@@ -72,7 +72,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const intervalId = setInterval(() => {
         const abodyData = getCookie('abody_scan_data');
-        if (abodyData) {
+        console.log("Sending body:", JSON.stringify({ abody_scan_data: abodyData }));
+        parsedCookieData = JSON.parse(decodeURIComponent(abodyData));
+        console.log("parsedCookieData", parsedCookieData)
+        if (abodyData && abodyData !== 'undefined') {
             clearInterval(intervalId);
 
             // Send the data to the Django backend
