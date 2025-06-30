@@ -8,10 +8,23 @@ from django.template.loader import render_to_string
 from carts.models import CartItem
 from store.models import Product
 from .forms import OrderForm
-from .models import Order, Payment, OrderProduct
+# from .models import Order, Payment, OrderProduct
 
 import datetime
+
 import json
+from .models import Order, OrderProduct, Payment, UserMeasurementData
+
+MEASUREMENT_KEYS = {
+    1: "Neck", 2: "Chest", 3: "Waist", 4: "Stomach", 5: "Trousers waist",
+    6: "Hips", 7: "Thigh Right", 8: "Thigh Left", 9: "Knee Right", 10: "Knee Left",
+    11: "Armhole Right", 12: "Armhole Left", 13: "Bicep Left", 14: "Bicep Right",
+    15: "Wrist Right", 16: "Wrist Left", 17: "Crotch", 18: "Arm Length to Wrist",
+    19: "Outside Leg to Ground", 20: "Inseam to Ground", 21: "Inseam to Ankle",
+    22: "Straight Shoulder", 23: "Curve Shoulder", 24: "Neck to Chest",
+    25: "Neck to Waist", 26: "Neck to Waist", 27: "Neck to Crotch",
+    28: "Neck to Middle Hand", 29: "Neck to Knee", 30: "Neck High to Knee"
+}
 
 def payments(request):
     #this comes from json javascript from paypal
@@ -142,29 +155,80 @@ def place_order(request, total = 0, quantity = 0):
             return redirect('checkout')
 
 
+# def order_complete(request):
+#     order_number = request.GET.get('order_number')
+#     transID = request.GET.get('payment_id')
+#
+#     try:
+#         order = Order.objects.get(order_number=order_number, is_ordered=True)
+#         ordered_products = OrderProduct.objects.filter(order_id = order.id)
+#
+#         subtotal = 0
+#         for i in ordered_products:
+#             subtotal += i.product_price * i.quantity
+#
+#         payment = Payment.objects.get(payment_id = transID)
+#
+#         context = {
+#             'order': order,
+#             'ordered_products': ordered_products,
+#             'order_number': order.order_number,
+#             'transID': payment.payment_id,
+#             'payment': payment,
+#             'subtotal': subtotal,
+#         }
+#         return render(request, 'orders/order_complete.html', context) #get measured
+#     except (Payment.DoesNotExist, Order.DoesNotExist):
+#         return redirect('home')
+
+
+
 def order_complete(request):
     order_number = request.GET.get('order_number')
     transID = request.GET.get('payment_id')
 
     try:
         order = Order.objects.get(order_number=order_number, is_ordered=True)
-        ordered_products = OrderProduct.objects.filter(order_id = order.id)
+        ordered_products = OrderProduct.objects.filter(order_id=order.id)
 
         subtotal = 0
         for i in ordered_products:
             subtotal += i.product_price * i.quantity
 
-        payment = Payment.objects.get(payment_id = transID)
+        payment = Payment.objects.get(payment_id=transID)
+
+        # Read cookie
+        raw_cookie_data = request.COOKIES.get('abody_scan_data')
+        measurement_data = {}
+
+        if raw_cookie_data:
+            try:
+                parsed_data = json.loads(raw_cookie_data)
+                # Map ID -> name
+                measurement_data = {
+                    MEASUREMENT_KEYS.get(int(k), f"Unknown-{k}"): v
+                    for k, v in parsed_data.items()
+                }
+
+                # Associate with user (assuming request.user is authenticated)
+                user = request.user
+                if user.is_authenticated:
+                    UserMeasurementData.objects.update_or_create(
+                        user=user,
+                        defaults={'data': measurement_data}
+                    )
+            except (json.JSONDecodeError, ValueError) as e:
+                print("Invalid cookie format:", e)
 
         context = {
             'order': order,
             'ordered_products': ordered_products,
-            'order_number': order.order_number,
+            'order_number': order_number,
             'transID': payment.payment_id,
             'payment': payment,
-            'subtotal': subtotal,
+            'subtotal': subtotal
         }
-        return render(request, 'orders/order_complete.html', context) #get measured
+        return render(request, 'orders/order_complete.html', context)
+
     except (Payment.DoesNotExist, Order.DoesNotExist):
         return redirect('home')
-

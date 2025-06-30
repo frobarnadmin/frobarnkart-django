@@ -1,5 +1,5 @@
 from django.contrib import admin
-from orders.models import Order, Payment, OrderProduct, UserMeasurement
+from orders.models import Order, Payment, OrderProduct, UserMeasurement, UserMeasurementData
 
 
 # Register your models here.
@@ -39,3 +39,4 @@ admin.site.register(Order, OrderAdmin)
 admin.site.register(Payment)
 admin.site.register(OrderProduct, OrderProductAdmin)
 admin.site.register(UserMeasurement, UserMeasurementAdmin)
+admin.site.register(UserMeasurementData)

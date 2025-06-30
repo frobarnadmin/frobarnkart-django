@@ -2,7 +2,9 @@ from django.db import models
 
 from accounts.models import Account
 from store.models import Variation, Product
-
+# from django.contrib.auth.models import User
+# from django.contrib.postgres.fields import JSONField  # Use from django.db.models if Django >= 3.1
+from django.db.models import JSONField
 
 # Create your models here.
 class Payment(models.Model):
@@ -112,3 +114,14 @@ class UserMeasurement(models.Model):
 
     def __str__(self):
         return f"{self.user}'s Measurements"
+
+
+
+class UserMeasurementData(models.Model):
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    data = JSONField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user}'s Measurements_"
