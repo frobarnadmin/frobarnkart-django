@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
             clearInterval(intervalId);
 
             // Send the data to the Django backend
-            fetch('/save-user-measurements/', {
+            fetch('/orders/save-user-measurements/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
