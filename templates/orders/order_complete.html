@@ -73,7 +73,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const intervalId = setInterval(() => {
         const abody_scan_data = getCookie('abody_scan_data');
         {#console.log("Sending body:", JSON.stringify({ abody_scan_data: abodyData }));#}
-        const abodyData = JSON.parse(decodeURIComponent(abody_scan_data));
+        {#const abodyData = JSON.parse(decodeURIComponent(abody_scan_data));#}
+        const abodyData = JSON.stringify(JSON.parse(decodeURIComponent(abody_scan_data)));
         console.log("abodyData", abodyData)
         if (abodyData && abodyData !== 'undefined') {
             clearInterval(intervalId);
