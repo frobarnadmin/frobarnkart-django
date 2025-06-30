@@ -12,8 +12,13 @@ from .forms import OrderForm
 
 import datetime
 
-import json
 from .models import Order, OrderProduct, Payment, UserMeasurementData
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+import json
+
 
 MEASUREMENT_KEYS = {
     1: "Neck", 2: "Chest", 3: "Waist", 4: "Stomach", 5: "Trousers waist",
@@ -155,80 +160,107 @@ def place_order(request, total = 0, quantity = 0):
             return redirect('checkout')
 
 
-# def order_complete(request):
-#     order_number = request.GET.get('order_number')
-#     transID = request.GET.get('payment_id')
-#
-#     try:
-#         order = Order.objects.get(order_number=order_number, is_ordered=True)
-#         ordered_products = OrderProduct.objects.filter(order_id = order.id)
-#
-#         subtotal = 0
-#         for i in ordered_products:
-#             subtotal += i.product_price * i.quantity
-#
-#         payment = Payment.objects.get(payment_id = transID)
-#
-#         context = {
-#             'order': order,
-#             'ordered_products': ordered_products,
-#             'order_number': order.order_number,
-#             'transID': payment.payment_id,
-#             'payment': payment,
-#             'subtotal': subtotal,
-#         }
-#         return render(request, 'orders/order_complete.html', context) #get measured
-#     except (Payment.DoesNotExist, Order.DoesNotExist):
-#         return redirect('home')
-
-
-
 def order_complete(request):
     order_number = request.GET.get('order_number')
     transID = request.GET.get('payment_id')
 
     try:
         order = Order.objects.get(order_number=order_number, is_ordered=True)
-        ordered_products = OrderProduct.objects.filter(order_id=order.id)
+        ordered_products = OrderProduct.objects.filter(order_id = order.id)
 
         subtotal = 0
         for i in ordered_products:
             subtotal += i.product_price * i.quantity
 
-        payment = Payment.objects.get(payment_id=transID)
-
-        # Read cookie
-        raw_cookie_data = request.COOKIES.get('abody_scan_data')
-        measurement_data = {}
-
-        if raw_cookie_data:
-            try:
-                parsed_data = json.loads(raw_cookie_data)
-                # Map ID -> name
-                measurement_data = {
-                    MEASUREMENT_KEYS.get(int(k), f"Unknown-{k}"): v
-                    for k, v in parsed_data.items()
-                }
-
-                # Associate with user (assuming request.user is authenticated)
-                user = request.user
-                if user.is_authenticated:
-                    UserMeasurementData.objects.update_or_create(
-                        user=user,
-                        defaults={'data': measurement_data}
-                    )
-            except (json.JSONDecodeError, ValueError) as e:
-                print("Invalid cookie format:", e)
+        payment = Payment.objects.get(payment_id = transID)
 
         context = {
             'order': order,
             'ordered_products': ordered_products,
-            'order_number': order_number,
+            'order_number': order.order_number,
             'transID': payment.payment_id,
             'payment': payment,
-            'subtotal': subtotal
+            'subtotal': subtotal,
         }
-        return render(request, 'orders/order_complete.html', context)
-
+        return render(request, 'orders/order_complete.html', context) #get measured
     except (Payment.DoesNotExist, Order.DoesNotExist):
         return redirect('home')
+
+
+
+# def order_complete(request):
+#     order_number = request.GET.get('order_number')
+#     transID = request.GET.get('payment_id')
+#
+#     try:
+#         order = Order.objects.get(order_number=order_number, is_ordered=True)
+#         ordered_products = OrderProduct.objects.filter(order_id=order.id)
+#
+#         subtotal = 0
+#         for i in ordered_products:
+#             subtotal += i.product_price * i.quantity
+#
+#         payment = Payment.objects.get(payment_id=transID)
+#
+#         # Read cookie
+#         raw_cookie_data = request.COOKIES.get('abody_scan_data')
+#         measurement_data = {}
+#
+#         if raw_cookie_data:
+#             try:
+#                 parsed_data = json.loads(raw_cookie_data)
+#                 # Map ID -> name
+#                 measurement_data = {
+#                     MEASUREMENT_KEYS.get(int(k), f"Unknown-{k}"): v
+#                     for k, v in parsed_data.items()
+#                 }
+#
+#                 # Associate with user (assuming request.user is authenticated)
+#                 user = request.user
+#                 if user.is_authenticated:
+#                     UserMeasurementData.objects.update_or_create(
+#                         user=user,
+#                         defaults={'data': measurement_data}
+#                     )
+#             except (json.JSONDecodeError, ValueError) as e:
+#                 print("Invalid cookie format:", e)
+#
+#         context = {
+#             'order': order,
+#             'ordered_products': ordered_products,
+#             'order_number': order_number,
+#             'transID': payment.payment_id,
+#             'payment': payment,
+#             'subtotal': subtotal
+#         }
+#         return render(request, 'orders/order_complete.html', context)
+#
+#     except (Payment.DoesNotExist, Order.DoesNotExist):
+#         return redirect('home')
+
+
+
+
+@csrf_exempt
+@login_required
+def save_user_measurements(request):
+    if request.method == 'POST':
+        try:
+            payload = json.loads(request.body)
+            raw_data = json.loads(payload.get('abody_scan_data', '{}'))
+
+            parsed_data = {
+                MEASUREMENT_KEYS.get(int(k), f"Unknown-{k}"): v
+                for k, v in raw_data.items()
+            }
+
+            UserMeasurementData.objects.update_or_create(
+                user=request.user,
+                defaults={'data': parsed_data}
+            )
+
+            return JsonResponse({'status': 'success'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+
+    return JsonResponse({'error': 'Invalid request'}, status=405)
