@@ -112,23 +112,13 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'railway',
+            'NAME': 'frobarn_local',
             'USER': 'postgres',
-            'PASSWORD': 'kjnqIzjSFLroZDhOfuCAFutGebJNmqRv',
-            'HOST': 'turntable.proxy.rlwy.net',
-            'PORT': 14913,
+            'PASSWORD': 'postgres123',
+            'HOST': 'localhost',
+            'PORT': 5432,
         }
     }
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': 'frobarn_local',
-    #         'USER': 'postgres',
-    #         'PASSWORD': 'postgres123',
-    #         'HOST': 'localhost',
-    #         'PORT': 5432,
-    #     }
-    # }
     # DATABASES = {
     #     'default': {
     #         'ENGINE': 'django.db.backends.sqlite3',
