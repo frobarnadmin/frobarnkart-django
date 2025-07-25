@@ -84,26 +84,41 @@ AUTH_USER_MODEL = 'accounts.Account'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+
 # Load environment variables from .env file
-# from dotenv import load_dotenv
-# load_dotenv(os.path.join(BASE_DIR, '.env'))
-#
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'kjnqIzjSFLroZDhOfuCAFutGebJNmqRv',
-        'HOST': 'turntable.proxy.rlwy.net',
-        'PORT': 14913,
+from dotenv import load_dotenv
+load_dotenv(os.path.join(BASE_DIR, '.env'))
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'development')
+
+if DJANGO_ENV == 'production':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'railway',
+            'USER': 'postgres',
+            'PASSWORD': 'kjnqIzjSFLroZDhOfuCAFutGebJNmqRv',
+            'HOST': 'turntable.proxy.rlwy.net',
+            'PORT': 14913,
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'frobarn_local',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres123',
+            'HOST': 'localhost',
+            'PORT': 5432,
+        }
+    }
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': BASE_DIR / 'db.sqlite3',
+    #     }
+    # }
+
 # if not DEBUG:  # Or use any other condition to detect production
 #     DATABASES['default']['OPTIONS']['sslmode'] = 'require'
 

@@ -56,7 +56,7 @@ class Order(models.Model):
         return "%s %s" % (self.address_line_1, self.address_line_2)
 
     def __str__(self):
-        return self.first_name + " " + self.last_name + " " + self.order_number
+        return self.first_name + " " + self.last_name + " #" + self.order_number
 
 #ordered products model
 class OrderProduct(models.Model):
@@ -72,7 +72,7 @@ class OrderProduct(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.product.product_name
+        return self.product.product_name + " #" + self.order.order_number
 
 # remove blank and null = true for order at a later time
 class UserMeasurement(models.Model):
@@ -116,12 +116,25 @@ class UserMeasurement(models.Model):
         return f"{self.user}'s Measurements"
 
 
-
 class UserMeasurementData(models.Model):
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    order_number = models.CharField(max_length=20, default="1970010101")
     data = JSONField()
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.user}'s Measurements_"
+
+
+class TailorComment(models.Model):
+    order_product = models.ForeignKey('OrderProduct', on_delete=models.CASCADE, related_name='tailor_comments')
+    comment_title = models.CharField(max_length=255, blank=True)  # Optional title
+    comment = models.TextField()
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.comment_title if self.comment_title else f"Comment #{self.pk}"

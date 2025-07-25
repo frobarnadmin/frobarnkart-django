@@ -163,6 +163,7 @@ def place_order(request, total = 0, quantity = 0):
 def order_complete(request):
     order_number = request.GET.get('order_number')
     transID = request.GET.get('payment_id')
+    request.session['order_number_in_session'] = order_number
 
     try:
         order = Order.objects.get(order_number=order_number, is_ordered=True)
@@ -244,6 +245,7 @@ def order_complete(request):
 @csrf_exempt
 @login_required
 def save_user_measurements(request):
+    order_number_in_session_value = request.session.get('order_number_in_session', '012345')
     if request.method == 'POST':
         try:
             payload = json.loads(request.body)
@@ -254,9 +256,10 @@ def save_user_measurements(request):
                 for k, v in raw_data.items()
             }
 
-            UserMeasurementData.objects.update_or_create(
+            UserMeasurementData.objects.create(
                 user=request.user,
-                defaults={'data': parsed_data}
+                order_number=order_number_in_session_value,
+                data=parsed_data  # set directly
             )
 
             return JsonResponse({'status': 'success'})

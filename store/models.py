@@ -4,10 +4,12 @@ from accounts.models import Account
 from category.models import Category
 from django.urls import reverse
 from django.db.models import Avg, Count
+from accounts.models import Tailor
 
 # Create your models here.
 
 class Product(models.Model):
+    tailor = models.ForeignKey(Tailor, on_delete=models.CASCADE, null=True, blank=True)
     product_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField(max_length=2000, blank=True)

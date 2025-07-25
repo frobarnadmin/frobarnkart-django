@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # Create your models here.
@@ -51,6 +52,7 @@ class Account(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    is_tailor = models.BooleanField(default=False)
     # is_superadmin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
@@ -72,7 +74,7 @@ class Account(AbstractBaseUser):
 
     # def has_module_perms(self, app_label):
     #     return True
-#UserProfile should contain user's measurements
+#UserProfile should contain user's measurementsoff
 class UserProfile(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
     address_line_1 = models.CharField(max_length=100, blank=True)
@@ -87,3 +89,26 @@ class UserProfile(models.Model):
 
     def full_address(self):
         return '%s %s' % (self.address_line_1, self.address_line_2)
+
+class Tailor(models.Model):
+    account = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    business_name = models.CharField(max_length=255)
+    brand_name = models.CharField(max_length=255, default='')
+    business_address = models.TextField()
+    business_city = models.CharField(max_length=100)
+    business_state = models.CharField(max_length=100)
+    email_address = models.EmailField()
+    business_phone_number = models.CharField(max_length=20)
+
+    maximum_capacity_per_week = models.PositiveIntegerField()
+
+    local_bank = models.CharField(max_length=100)
+    bank_account_name = models.CharField(max_length=255)
+    bank_account_number = models.CharField(max_length=50)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.business_name} ({self.account.username})"

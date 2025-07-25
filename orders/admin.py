@@ -1,5 +1,5 @@
 from django.contrib import admin
-from orders.models import Order, Payment, OrderProduct, UserMeasurement, UserMeasurementData
+from orders.models import Order, Payment, OrderProduct, UserMeasurement, UserMeasurementData, TailorComment
 
 
 # Register your models here.
@@ -35,8 +35,17 @@ class UserMeasurementAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at')
     ordering = ('-created_at',)
 
+class UserMeasurementDataAdmin(admin.ModelAdmin):
+    list_display = ['user','order_number', 'created_at']
+    list_per_page = 20
+
+class TailorCommentAdmin(admin.ModelAdmin):
+    list_display = ['comment_title', 'created_at']
+    list_per_page = 20
+
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Payment)
 admin.site.register(OrderProduct, OrderProductAdmin)
 admin.site.register(UserMeasurement, UserMeasurementAdmin)
-admin.site.register(UserMeasurementData)
+admin.site.register(UserMeasurementData, UserMeasurementDataAdmin)
+admin.site.register(TailorComment, TailorCommentAdmin)
