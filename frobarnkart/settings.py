@@ -103,22 +103,32 @@ if DJANGO_ENV == 'production':
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'railway',
             'USER': 'postgres',
-            'PASSWORD': 'GifLsazLfKDzYUGAYdwluBWNMqHQHDpY',
-            'HOST': 'metro.proxy.rlwy.net',
-            'PORT': 41591,
+            'PASSWORD': 'kjnqIzjSFLroZDhOfuCAFutGebJNmqRv',
+            'HOST': 'turntable.proxy.rlwy.net',
+            'PORT': 14913,
         }
-    } 
+    }
 else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'frobarn_local',
+            'NAME': 'railway',
             'USER': 'postgres',
-            'PASSWORD': 'postgres123',
-            'HOST': 'localhost',
-            'PORT': 5432,
+            'PASSWORD': 'kjnqIzjSFLroZDhOfuCAFutGebJNmqRv',
+            'HOST': 'turntable.proxy.rlwy.net',
+            'PORT': 14913,
         }
     }
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql',
+    #         'NAME': 'frobarn_local',
+    #         'USER': 'postgres',
+    #         'PASSWORD': 'postgres123',
+    #         'HOST': 'localhost',
+    #         'PORT': 5432,
+    #     }
+    # }
     # DATABASES = {
     #     'default': {
     #         'ENGINE': 'django.db.backends.sqlite3',
