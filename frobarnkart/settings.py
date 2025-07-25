@@ -87,8 +87,15 @@ AUTH_USER_MODEL = 'accounts.Account'
 
 # Load environment variables from .env file
 from dotenv import load_dotenv
-load_dotenv(os.path.join(BASE_DIR, '.env'))
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'development')
+# load_dotenv(os.path.join(BASE_DIR, '.env'))
+# DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
+
+# Only load .env if it exists (safe for dev only)
+dotenv_path = os.path.join(BASE_DIR, '.env')
+if os.path.exists(dotenv_path):
+    load_dotenv(dotenv_path)
+
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
 
 if DJANGO_ENV == 'production':
     DATABASES = {
