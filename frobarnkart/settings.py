@@ -103,11 +103,11 @@ if DJANGO_ENV == 'production':
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'railway',
             'USER': 'postgres',
-            'PASSWORD': 'kjnqIzjSFLroZDhOfuCAFutGebJNmqRv',
-            'HOST': 'turntable.proxy.rlwy.net',
-            'PORT': 14913,
+            'PASSWORD': 'GifLsazLfKDzYUGAYdwluBWNMqHQHDpY',
+            'HOST': 'metro.proxy.rlwy.net',
+            'PORT': 41591,
         }
-    }
+    } 
 else:
     DATABASES = {
         'default': {
