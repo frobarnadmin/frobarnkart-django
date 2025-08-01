@@ -1,0 +1,343 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+        <!-- breadcrumb section strats here -->
+    <div class="breadcrumb-section mb-100"
+        style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(assets/image/inner-page/breadcrumb-image3.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <div class="banner-content style-2 text-center">
+                        <h1>About us</h1>
+                        <ul class="breadcrumb-list">
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><span>/ </span>About us</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb section ends here -->
+<!-- About us video section strats here -->
+    <div class="video-section mb-60 wow animate fadeInDown" data-wow-delay="200ms" data-wow-duration="1500ms">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="video-section-image">
+                        <img src= "{% static 'assets/image/inner-page/video-image.jpg' %}">
+                        <a href="https://www.youtube.com/watch?v=nbLP_0zmOYw" class="video-area video-player">
+                            <div class="icon">
+                                <svg class="video-circle" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="65px"
+                                    viewBox="0 0 206 206" style="enable-background:new 0 0 206 206;" xml:space="preserve">
+                                    <circle class="circle" stroke-miterlimit="10" cx="103" cy="103" r="100"></circle>
+                                    <path class="circle-half top-half" stroke-width="4" stroke-miterlimit="10"
+                                        d="M16.4,53C44,5.2,105.2-11.2,153,16.4s64.2,88.8,36.6,136.6"></path>
+                                    <path class="circle-half bottom-half" stroke-width="4" stroke-miterlimit="10"
+                                        d="M189.6,153C162,200.8,100.8,217.2,53,189.6S-11.2,100.8,16.4,53"></path>
+                                </svg>
+                                <i class="bi bi-play"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- our brand section strats here -->
+    <div class="our-brand-section mb-100 wow animate fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="our-brand-content text-center">
+    <h2>Welcome to Frobarn, where culture meets technology</h2>
+    <p>
+        At Frobarn, we are reimagining how Nigerian men experience fashion.
+        Born from a deep respect for heritage and a drive for innovation, our platform blends traditional craftsmanship with cutting-edge technology to deliver a seamless, personalized clothing experience.
+        From AI-powered body measurements to curated designs that celebrate culture, every detail is built for convenience, precision, and style.
+        We partner with skilled artisans and leverage smart tools to ensure your garments fit perfectly and reflect your individuality—because fashion should be as effortless as it is expressive.
+        Join us as we transform how tradition and modernity come together, one stitch at a time.
+    </p>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- our brand section ends here -->
+    <!-- our value section starts here -->
+<div class="our-value-section mb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 wow animate fadeInLeft" data-wow-delay="200ms" data-wow-duration="1500ms">
+                <div class="our-value-image">
+                    <img src="{% static 'assets/image/inner-page/our-value-image.jpg' %}" alt="Frobarn Values">
+                </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center wow animate fadeInRight" data-wow-delay="200ms" data-wow-duration="1500ms">
+                <div class="value-content">
+                    <h3>Our Values</h3>
+                    <ul>
+                        <li>
+                            <strong>1. Culture & Identity:</strong> We celebrate Nigerian heritage by blending traditional designs with modern expression, helping our customers wear their identity with pride.
+                        </li>
+                        <li>
+                            <strong>2. Simplicity:</strong> From AI-powered measurements to seamless ordering, we make fashion effortless and stress-free.
+                        </li>
+                        <li>
+                            <strong>3. Quality & Craftsmanship:</strong> We partner with expert tailors and artisans to ensure every garment meets the highest standard of fit and finish.
+                        </li>
+                        <li>
+                            <strong>4. Technology-Driven Personalization:</strong> We leverage smart tools to create perfectly tailored clothing experiences that reflect each customer’s unique style.
+                        </li>
+                        <li>
+                            <strong>5. Community:</strong> We are building more than a platform; we are creating a movement that connects customers, artisans, and culture.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- our value section ends here -->
+ <!-- tesimonial section strats here -->
+    <div class="testimonial-section mb-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 mb-50">
+                    <div class="section-title text-center">
+                        <span>Testimonial</span>
+                        <h3> our happy customers</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="swiper testimonial-swiper-slide">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="testimonial-content">
+                                    <div class="rating">
+                                        <ul>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                        </ul>
+                                    </div>
+                                    <p>“Frobarn completely transformed the way I shop for traditional clothing. The platform made it so easy to get the perfect fit with their smart measurement tool, and the designs are a beautiful mix of culture and modern style. I’ve never felt more confident or connected to my roots. Highly recommended for anyone who values quality, convenience, and authenticity!
+”</p>
+                                    <div class="author-area">
+                                        <h5>Jayden Carter</h5>
+                                        <span>Fashion designer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-content">
+                                    <div class="rating">
+                                        <ul>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                        </ul>
+                                    </div>
+                                    <p>“Frobarn completely transformed the way I shop for traditional clothing. The platform made it so easy to get the perfect fit with their smart measurement tool, and the designs are a beautiful mix of culture and modern style. I’ve never felt more confident or connected to my roots. Highly recommended for anyone who values quality, convenience, and authenticity!
+”
+                                    </p>
+                                    <div class="author-area">
+                                        <h5>Colton Roman</h5>
+                                        <span>Fashion designer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-content">
+                                    <div class="rating">
+                                        <ul>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                        </ul>
+                                    </div>
+                                    <p>“Frobarn completely transformed the way I shop for traditional clothing. The platform made it so easy to get the perfect fit with their smart measurement tool, and the designs are a beautiful mix of culture and modern style. I’ve never felt more confident or connected to my roots. Highly recommended for anyone who values quality, convenience, and authenticity!
+”</p>
+                                    <div class="author-area">
+                                        <h5>Lincoln Miles</h5>
+                                        <span>Fashion designer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-content">
+                                    <div class="rating">
+                                        <ul>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                        </ul>
+                                    </div>
+                                    <p>“Frobarn completely transformed the way I shop for traditional clothing. The platform made it so easy to get the perfect fit with their smart measurement tool, and the designs are a beautiful mix of culture and modern style. I’ve never felt more confident or connected to my roots. Highly recommended for anyone who values quality, convenience, and authenticity!
+”</p>
+                                    <div class="author-area">
+                                        <h5>Jayden Carter</h5>
+                                        <span>Fashion designer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-content">
+                                    <div class="rating">
+                                        <ul>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                        </ul>
+                                    </div>
+                                    <p>“Frobarn completely transformed the way I shop for traditional clothing. The platform made it so easy to get the perfect fit with their smart measurement tool, and the designs are a beautiful mix of culture and modern style. I’ve never felt more confident or connected to my roots. Highly recommended for anyone who values quality, convenience, and authenticity!
+”
+                                    </p>
+                                    <div class="author-area">
+                                        <h5>Colton Roman</h5>
+                                        <span>Fashion designer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-content">
+                                    <div class="rating">
+                                        <ul>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                        </ul>
+                                    </div>
+                                    <p>“Frobarn completely transformed the way I shop for traditional clothing. The platform made it so easy to get the perfect fit with their smart measurement tool, and the designs are a beautiful mix of culture and modern style. I’ve never felt more confident or connected to my roots. Highly recommended for anyone who values quality, convenience, and authenticity!
+”</p>
+                                    <div class="author-area">
+                                        <h5>Lincoln Miles</h5>
+                                        <span>Fashion designer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-content">
+                                    <div class="rating">
+                                        <ul>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                        </ul>
+                                    </div>
+                                    <p>“Frobarn completely transformed the way I shop for traditional clothing. The platform made it so easy to get the perfect fit with their smart measurement tool, and the designs are a beautiful mix of culture and modern style. I’ve never felt more confident or connected to my roots. Highly recommended for anyone who values quality, convenience, and authenticity!
+”</p>
+                                    <div class="author-area">
+                                        <h5>Jayden Bayode</h5>
+                                        <span>Software Engineer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-content">
+                                    <div class="rating">
+                                        <ul>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                        </ul>
+                                    </div>
+                                    <p>“Frobarn completely transformed the way I shop for traditional clothing. The platform made it so easy to get the perfect fit with their smart measurement tool, and the designs are a beautiful mix of culture and modern style. I’ve never felt more confident or connected to my roots. Highly recommended for anyone who values quality, convenience, and authenticity!
+”
+                                    </p>
+                                    <div class="author-area">
+                                        <h5>Colton Adegbola</h5>
+                                        <span>Fashion designer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-content">
+                                    <div class="rating">
+                                        <ul>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                        </ul>
+                                    </div>
+                                    <p>“Frobarn completely transformed the way I shop for traditional clothing. The platform made it so easy to get the perfect fit with their smart measurement tool, and the designs are a beautiful mix of culture and modern style. I’ve never felt more confident or connected to my roots. Highly recommended for anyone who values quality, convenience, and authenticity!
+”</p>
+                                    <div class="author-area">
+                                        <h5>Lincoln Ozumba</h5>
+                                        <span>Fashion designer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-content">
+                                    <div class="rating">
+                                        <ul>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                            <li><i class="bi bi-star-fill"></i></li>
+                                        </ul>
+                                    </div>
+                                    <p>“Frobarn completely transformed the way I shop for traditional clothing. The platform made it so easy to get the perfect fit with their smart measurement tool, and the designs are a beautiful mix of culture and modern style. I’ve never felt more confident or connected to my roots. Highly recommended for anyone who values quality, convenience, and authenticity!
+”</p>
+                                    <div class="author-area">
+                                        <h5>Kayode Miles</h5>
+                                        <span>Fashion designer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center pt-50">
+                    <div class="slider-btn-wrap3">
+                        <div class="slider-btn testimonial-slider-prev">
+                            <svg width="13" height="14" viewBox="0 0 13 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 13C11 10.5 6 8 3 7C6 6 10.5 4.5 12 1" stroke-width="1.5"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <div class="fractional-pagination3"></div>
+                        <div class="slider-btn testimonial-slider-next">
+                            <svg width="13" height="14" viewBox="0 0 13 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1C2 3.5 7 6 10 7C7 8 2.5 9.5 1 13" stroke-width="1.5"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- tesimonial section ends here -->
+
+{% endblock %}

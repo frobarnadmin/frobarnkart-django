@@ -22,8 +22,8 @@
                         </a>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <a class="primary-btn footer-btn" href="mailto:infoexample@gmail.com">
-                            Email - infoexample@gmail.com
+                        <a class="primary-btn footer-btn" href="mailto:info@frobarn.com">
+                            Email - info@frobarn.com
                             <svg class="arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 9L9 1M9 1C7.22222 1.33333 3.33333 2 1 1M9 1C8.66667 2.66667 8 6.33333 9 9" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round"></path>
                             </svg>
@@ -94,7 +94,7 @@
                         <ul class="widget-list">
                              {% for category in links %}
                                          <li><a href="{{ category.get_url }}">
-                                             {{ category.category_name }}
+                                             {{ category.category_name|title }}
                                          <svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="3" cy="3" r="3"></circle>
                                     </svg>
@@ -120,15 +120,15 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="contact.html">
-                                    Our Offline Store
+                                <a href="{% url 'about' %}">
+                                    About Us
                                     <svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="3" cy="3" r="3"></circle>
                                     </svg>
                                 </a>
                             </li>
                            <li>
-                                <a href="faq.html">
+                                <a href="{% url 'faqs' %}">
                                     FAQ’s
                                     <svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="3" cy="3" r="3"></circle>
@@ -152,7 +152,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{% url 'support' %}">
                                     Help &amp; Support
                                     <svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="3" cy="3" r="3"></circle>
@@ -198,8 +198,7 @@
                                     </h4>
                                 </div>
                             </div>
-                            <p>N:B - Sunday Closed,<span> otherswsie you
-                                    can call anytime within opening hours.</span></p>
+
                         </div>
                     </div>
                 </div>
@@ -211,7 +210,7 @@
                     <div class="col-lg-12">
                         <div class="footer-btm-content">
                             <div class="copyright-area">
-                                <p> © Copyright 2025 <a href="index.html">Ethics </a> | Design By<a href="https://www.egenslab.com/"> Egens Lab </a> </p>
+                                <p> © Copyright 2025 <a href="{% url 'home' %}">Frobarn Platforms LLC </a> </p>
                             </div>
                             <div class="right-area">
                                 <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">

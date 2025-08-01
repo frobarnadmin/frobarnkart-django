@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+        <!-- breadcrumb section strats here -->
+    <div class="breadcrumb-section mb-100"
+        style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(assets/image/inner-page/breadcrumb-image3.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <div class="banner-content style-2 text-center">
+                        <h1>Contact Us</h1>
+                        <ul class="breadcrumb-list">
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><span>/ </span>Contact Us</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb section ends here -->
+
+    <!-- Enquiry section Start here -->
+    <div class="enquery-section mb-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="enquery-form-wrapper style-2">
+                        <form>
+                            <div class="form-title">
+                                <h4>reach us anytime</h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-30">
+                                    <div class="form-inner">
+                                        <label>first name <span>*</span></label>
+                                        <input type="text" placeholder="Mr. Daniel">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-30">
+                                    <div class="form-inner">
+                                        <label>last name</label>
+                                        <input type="text" placeholder="Scoot">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-30">
+                                    <div class="form-inner">
+                                        <label>phone number</label>
+                                        <input type="text" placeholder="+99 (0) *** ** ***">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-30">
+                                    <div class="form-inner">
+                                        <label>email address <span>*</span></label>
+                                        <input type="email" placeholder="info@example.com">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-15">
+                                    <div class="form-inner">
+                                        <label>message</label>
+                                        <textarea placeholder="Write your enquiry..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-inner">
+                                        <button class="primary-btn" type="submit">
+                                            SUBMIT here
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Enquiry section ends here -->
+{% endblock %}

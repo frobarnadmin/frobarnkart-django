@@ -17,3 +17,19 @@ def home(request):
         'reviews': reviews,
     }
     return render(request, 'home.html', context)
+
+def about(request):
+
+    return render(request, 'about.html')
+
+def faqs(request):
+
+    return render(request, 'faqs.html')
+
+def support(request):
+
+    return render(request, 'support.html')
+
+def contact(request):
+
+    return render(request, 'contact.html')

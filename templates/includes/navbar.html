@@ -381,7 +381,7 @@
                             <li class="menu-item-has-children">
                                 <a href="#" class="drop-down"> PAGES</a><i class="bi bi-plus dropdown-icon"></i>
                                 <ul class="sub-menu">
-                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li><a href="{% url 'about' %}">About Us</a></li>
                                     <li>
                                         <a href="categories.html">Category</a>
                                         <i class="d-xl-flex d-none bi bi-chevron-right dropdown-icon"></i>
@@ -391,11 +391,11 @@
                                             <li><a href="categories2.html">Category Style 02</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="faq.html">FAQ's</a></li>
-                                    <li><a href="error.html">Error</a></li>
+                                    <li><a href="{% url 'faqs' %}">FAQ's</a></li>
+
                                 </ul>
                             </li>
-                            <li><a href="contact.html">CONTACT</a></li>
+                            <li><a href="{% url 'contact' %}">CONTACT</a></li>
                         </ul>
                         <div class="d-xl-none d-block">
                             <div class="mobile-search-area mb-30">
