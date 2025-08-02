@@ -8,8 +8,29 @@ from accounts.models import Tailor
 
 # Create your models here.
 
+class Brand(models.Model):
+    brand_name = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(max_length=200, default='', unique=True)
+    brand_image_logo = models.ImageField(upload_to='brand_logos/')
+    brand_description = models.TextField(blank=True, null=True)
+    brand_company_name = models.ForeignKey(
+        Tailor,
+        on_delete=models.CASCADE,
+        related_name='brands'
+    )
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def get_url(self):
+        return reverse('brand_detail', args=[self.slug])
+
+    def __str__(self):
+        return self.brand_name
+
 class Product(models.Model):
-    tailor = models.ForeignKey(Tailor, on_delete=models.CASCADE, null=True, blank=True)
+    # tailor = models.ForeignKey(Tailor, on_delete=models.CASCADE, null=True, blank=True)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True, blank=True)
     product_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField(max_length=2000, blank=True)

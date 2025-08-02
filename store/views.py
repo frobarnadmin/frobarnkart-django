@@ -12,7 +12,7 @@ from category.models import Category
 from carts.views import _cart_id
 from orders.models import OrderProduct
 from .forms import ReviewForm
-from .models import Product, ReviewRating, ProductGallery
+from .models import Product, ReviewRating, ProductGallery, Brand
 from .forms import ReviewForm
 
 
@@ -40,6 +40,26 @@ def store(request, category_slug=None):
         'product_count': product_count,
     }
     return render(request, 'store/store.html', context)
+
+def brand_detail(request, brand_slug=None):
+    brand = None
+    products = None
+
+    if brand_slug != None:
+        brand = get_object_or_404(Brand, slug=brand_slug)
+        products = Product.objects.filter(brand=brand, is_available=True).order_by('id')
+        paginator = Paginator(products, 3)
+        page = request.GET.get('page')
+        paged_products = paginator.get_page(page)
+        product_count = products.count()
+
+        context = {
+            'products': paged_products,
+            'product_count': product_count,
+        }
+
+    return render(request, 'store/store.html', context)
+
 
 def product_detail(request, category_slug, product_slug):
     try:

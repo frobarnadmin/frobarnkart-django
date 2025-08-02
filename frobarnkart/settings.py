@@ -121,6 +121,16 @@ else:
     }
     # DATABASES = {
     #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql',
+    #         'NAME': 'railway',
+    #         'USER': 'postgres',
+    #         'PASSWORD': 'kjnqIzjSFLroZDhOfuCAFutGebJNmqRv',
+    #         'HOST': 'turntable.proxy.rlwy.net',
+    #         'PORT': 14913,
+    #     }
+    # }
+    # DATABASES = {
+    #     'default': {
     #         'ENGINE': 'django.db.backends.sqlite3',
     #         'NAME': BASE_DIR / 'db.sqlite3',
     #     }

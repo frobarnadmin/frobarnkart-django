@@ -21,8 +21,15 @@
                             Search results
                         {% else %}
                             Our Store
+
                         {% endif %}
+                            </li>{% if 'brand' in request.path %}
+                            <li class="">
+                                <span>/</span> {% if products %}
+    {{ products.0.brand }}
+{% endif %}
                             </li>
+                        {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -214,7 +221,7 @@
                                         <div class="product-card-content">
 
                                             <h6><a class="hover-underline" href="{{ product.get_url }}">{{ product.product_name }}</a>
-                                            </h6>
+                                            </h6> Brand: <a href="{{ product.brand.get_url }}">{{ product.brand }}</a> <span> / </span> Category: {{ product.category }}
                                             <p class="price">${{ product.price }} </p>
 
                                         </div>

@@ -296,6 +296,7 @@
         <!-- categories section strats here -->
     <div class="home6-categorie-section mb-100">
         <div class="container">
+            {% if brands %}
             <div class="row wow animate fadeInDown" data-wow-delay="200ms" data-wow-duration="1500ms">
                 <div class="col-lg-12 mb-50">
                     <div class="section-title">
@@ -304,6 +305,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row wow animate fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
                 <div class="col-lg-12 position-relative">
                     <div class="slider-btn-groups4">
@@ -336,83 +338,42 @@
                     </div>
                     <div class="swiper home5-categori-swipe">
                         <div class="swiper-wrapper">
+                              {% for brand in brands %}
+
+
                             <div class="swiper-slide">
                                 <div class="categorie-card">
-                                    <a href="#"><img src= "{% static 'assets/image/home6/pukka.png' %}"
-                                            alt=""></a>
+                                     <a href="{{ brand.get_url }}" >
+                                            <img src="{{ brand.brand_image_logo.url }}">
+                                        </a>
+
                                     <div class="categorice-content">
-                                        <h6><a href="#">Pukka</a></h6>
+                                        <h6><a href="{{ brand.get_url }}">{{ brand.brand_name }}</a></h6>
                                     </div>
                                 </div>
                             </div>
+                             {% endfor %}
+                        {% for brand in brands %}
+
+
                             <div class="swiper-slide">
                                 <div class="categorie-card">
-                                    <a href="#"><img src= "{% static 'assets/image/home6/jt.png' %}"
-                                            alt=""></a>
+                                     <a href="#" >
+                                            <img src="{{ brand.brand_image_logo.url }}">
+                                        </a>
+
                                     <div class="categorice-content">
-                                        <h6><a href="#">Jack Taiwo</a></h6>
+                                        <h6><a href="#">{{ brand.brand_name }}</a></h6>
                                     </div>
                                 </div>
                             </div>
-                            <div class="swiper-slide">
-                                <div class="categorie-card">
-                                    <a href="#"><img src= "{% static 'assets/image/home6/zoria.png' %}"
-                                            alt=""></a>
-                                    <div class="categorice-content">
-                                        <h6><a href="#">Zoria</a></h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="categorie-card">
-                                    <a href="#"><img src= "{% static 'assets/image/home6/tas.png' %}"
-                                            alt=""></a>
-                                    <div class="categorice-content">
-                                        <h6><a href="#">Tas Apparels</a></h6>
-                                    </div>
-                                </div>
-                            </div>
-                             <div class="swiper-slide">
-                                <div class="categorie-card">
-                                    <a href="#"><img src= "{% static 'assets/image/home6/pukka.png' %}"
-                                            alt=""></a>
-                                    <div class="categorice-content">
-                                        <h6><a href="#">Pukka</a></h6>
-                                    </div>
-                                </div>
-                            </div>
-                             <div class="swiper-slide">
-                                <div class="categorie-card">
-                                    <a href="#"><img src= "{% static 'assets/image/home6/jt.png' %}"
-                                            alt=""></a>
-                                    <div class="categorice-content">
-                                        <h6><a href="#">Jack Taiwo</a></h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="categorie-card">
-                                    <a href="#"><img src= "{% static 'assets/image/home6/zoria.png' %}"
-                                            alt=""></a>
-                                    <div class="categorice-content">
-                                        <h6><a href="#">Zoria</a></h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="categorie-card">
-                                    <a href="#"><img src= "{% static 'assets/image/home6/logo2.jpg' %}"
-                                            alt=""></a>
-                                    <div class="categorice-content">
-                                        <h6><a href="#">Style by Mansion</a></h6>
-                                    </div>
-                                </div>
-                            </div>
+                             {% endfor %}
 
                         </div>
                     </div>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
     <!-- categories section ends here -->
@@ -426,7 +387,7 @@
                         <img src="{% static 'assets/image/home5/mdj1.png' %}" alt="">
                         <div class="shop-banner-content">
                             <span>Naija Men Fashion</span>
-                            <h3>Unified Elegance: Naija Fashion for Every Man and Style</h3>
+                            <h3>Unified Elegance: Naija Fashion for Every Man and Style using measurement precision with AI</h3>
                             <a href="{% url 'store' %}" class="primary-btn2">SHOP NOW</a>
                         </div>
                     </div>
@@ -984,7 +945,7 @@
                                 <li data-seconds="00">00</li>
                             </ul>
                         </div>
-                        <a href="#" class="primary-btn">SHOP NOW</a>
+                        <a href="{% url 'store' %}" class="primary-btn">SHOP NOW</a>
                     </div>
                 </div>
             </div>
