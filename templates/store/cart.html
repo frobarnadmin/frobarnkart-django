@@ -6,7 +6,7 @@
 
 <!-- breadcrumb section strats here -->
     <div class="breadcrumb-section mb-100"
-        style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('{% static "assets/image/inner-page/breadcrumbs-image5.jpg" %}');">
+        style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('{% static "assets/image/inner-page/cart.png" %}');">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 d-flex justify-content-center">
@@ -143,17 +143,18 @@
                                         <span>  ${{ tax }} </span>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="coupon-area">
-                                        <strong>Coupon Code</strong>
-                                        <form>
-                                            <div class="form-inner">
-                                                <input type="text" placeholder="Your code">
-                                                <button type="submit" class="apply-btn">Apply</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </li>
+{#                                coupon code area#}
+{#                                <li>#}
+{#                                    <div class="coupon-area">#}
+{#                                        <strong>Coupon Code</strong>#}
+{#                                        <form>#}
+{#                                            <div class="form-inner">#}
+{#                                                <input type="text" placeholder="Your code">#}
+{#                                                <button type="submit" class="apply-btn">Apply</button>#}
+{#                                            </div>#}
+{#                                        </form>#}
+{#                                    </div>#}
+{#                                </li>#}
                                 <li>
                                     <strong>Grand Total</strong>
                                     ${{ grand_total }}
