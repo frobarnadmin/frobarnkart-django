@@ -10,3 +10,14 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}".strip()
+
+class NewsletterContact(models.Model):
+    email = models.EmailField(unique=True, db_index=True)
+    source = models.CharField(max_length=100, blank=True, default="popup")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        indexes = [models.Index(fields=["email"])]
+
+    def __str__(self):
+        return self.email

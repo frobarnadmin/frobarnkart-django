@@ -1,5 +1,5 @@
 from django import forms
-from .models import Contact
+from .models import Contact, NewsletterContact
 
 class ContactForm(forms.ModelForm):
     # Honeypot (leave empty in the template; bots fill it)
@@ -21,3 +21,12 @@ class ContactForm(forms.ModelForm):
         if cleaned.get("website"):  # if honeypot filled -> likely bot
             raise forms.ValidationError("Invalid submission.")
         return cleaned
+
+class NewsletterForm(forms.ModelForm):
+    class Meta:
+        model = NewsletterContact
+        fields = ["email"]
+
+    def clean_email(self):
+        # Normalize emails to lowercase
+        return self.cleaned_data["email"].strip().lower()
