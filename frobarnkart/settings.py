@@ -200,20 +200,19 @@ MESSAGE_TAGS = {
 }
 
 
-
-# SMTP Configuration
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="admin@frobarn.com")
-
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'gshyllon@gmail.com'
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_PASSWORD = 'lpsxlwojgnqzeqsb'
+if DJANGO_ENV == 'production':
+    # SMTP Configuration
+    EMAIL_HOST = config('EMAIL_HOST')
+    EMAIL_PORT = config('EMAIL_PORT', cast=int)
+    EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+    EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+    DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="admin@frobarn.com")
+else:
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_HOST_USER = 'gshyllon@gmail.com'
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_PASSWORD = 'lpsxlwojgnqzeqsb'
 
 SITE_NAME = "Frobarn"
