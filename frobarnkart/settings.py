@@ -193,7 +193,8 @@ STATICFILES_DIRS = [
 # MEDIA_ROOT = BASE_DIR / 'media'
 # MEDIA_URL = '/media/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
 
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
@@ -211,9 +212,9 @@ SITE_NAME = "Frobarn"
 #     EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 #     DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="admin@frobarn.com")
 # else:
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'gshyllon@gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = 'lpsxlwojgnqzeqsb'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'gshyllon@gmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_PASSWORD = 'lpsxlwojgnqzeqsb'
 
