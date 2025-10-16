@@ -14,13 +14,13 @@ from accounts.forms import RegistrationForm, UserForm, UserProfileForm
 from accounts.models import Account, UserProfile
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
+from frobarnkart import settings
 from orders.models import UserMeasurement
 
 import requests
 import resend
-import os
-RESEND_API_KEY = "re_gDyxq8wH_MaCtcHgSKu9mCoRoGW7bKNW4"
-resend.api_key = RESEND_API_KEY
+
+resend.api_key = settings.RESEND_API_KEY
 
 from orders.models import Order, OrderProduct
 
@@ -49,9 +49,23 @@ def register(request):
             profile.profile_picture = 'default/default-user.png'
             profile.save()
 
-            # USER ACTIVATION
+            # # USER ACTIVATION
+            # current_site = get_current_site(request)
+            # mail_subject = 'Activate your account.'
+            # message = render_to_string('accounts/account_verification_email.html', {
+            #     'user': user,
+            #     'domain': current_site,
+            #     'domain_': current_site.domain,
+            #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            #     'token': default_token_generator.make_token(user),
+            # })
+            # to_email = email
+            # send_email = EmailMessage(mail_subject, message, to=[to_email])
+            # send_email.content_subtype = 'html'  # Set email content to HTML
+            # send_email.send()
+
+            # Trying Resend API
             current_site = get_current_site(request)
-            mail_subject = 'Activate your account.'
             message = render_to_string('accounts/account_verification_email.html', {
                 'user': user,
                 'domain': current_site,
@@ -59,10 +73,14 @@ def register(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': default_token_generator.make_token(user),
             })
-            to_email = email
-            send_email = EmailMessage(mail_subject, message, to=[to_email])
-            send_email.content_subtype = 'html'  # Set email content to HTML
-            send_email.send()
+            params = {
+                "from": "no-reply@frobarn.com",
+                "to": email,
+                "subject": 'Activate your account.',
+                "html": message,
+            }
+
+            resend.Emails.send(params)
             # messages.success(request, 'Account created successfully. Check your email to activate your account.')
             return redirect('/accounts/login/?command=verification&email=' + user.email)
     else:

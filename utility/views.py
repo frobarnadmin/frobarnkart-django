@@ -8,6 +8,10 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+import resend
+
+resend.api_key = settings.RESEND_API_KEY
+
 
 def contact(request):
     if request.method == "POST":
@@ -48,24 +52,42 @@ def _send_thank_you_email(to_email: str, source: str = "popup"):
             f"<p>— {brand} Team</p>"
         )
 
-    try:
-        text_body = render_to_string(
-            "emails/newsletter_thanks.txt",
-            {"brand": brand, "source": source}
-        )
-    except Exception:
-        text_body = strip_tags(html_body)
+    # try:
+    #     text_body = render_to_string(
+    #         "emails/newsletter_thanks.txt",
+    #         {"brand": brand, "source": source}
+    #     )
+    # except Exception:
+    #     text_body = strip_tags(html_body)
 
-    from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "no-reply@example.com")
-    msg = EmailMultiAlternatives(
-        subject=subject,
-        body=text_body,
-        from_email=from_email,
-        to=[to_email],
-    )
-    msg.attach_alternative(html_body, "text/html")
+    # from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "no-reply@frobarn.com")
+    # msg = EmailMultiAlternatives(
+    #     subject=subject,
+    #     body=text_body,
+    #     from_email=from_email,
+    #     to=[to_email],
+    # )
+    # msg.attach_alternative(html_body, "text/html")
     # Fail silently so subscription never errors due to email issues
-    msg.send(fail_silently=True)
+    # msg.send(fail_silently=True)
+
+    # Trying Resend API
+    # current_site = get_current_site(request)
+    # message = render_to_string('emails/newsletter_thanks.html', {
+    #     'user': user,
+    #     'domain': current_site,
+    #     'domain_': current_site.domain,
+    #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+    #     'token': default_token_generator.make_token(user),
+    # })
+    params = {
+        "from": "no-reply@frobarn.com",
+        "to": to_email,
+        "subject": subject,
+        "html": html_body,
+    }
+
+    resend.Emails.send(params)
 
 
 def subscribe_newsletter(request):
