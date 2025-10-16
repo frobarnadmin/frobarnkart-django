@@ -17,6 +17,10 @@ from carts.models import Cart, CartItem
 from orders.models import UserMeasurement
 
 import requests
+import resend
+import os
+RESEND_API_KEY = "re_gDyxq8wH_MaCtcHgSKu9mCoRoGW7bKNW4"
+resend.api_key = RESEND_API_KEY
 
 from orders.models import Order, OrderProduct
 
@@ -172,18 +176,37 @@ def forgotPassword(request):
             user = Account.objects.get(email__iexact=email)
 
             #Reset password email
+            # current_site = get_current_site(request)
+            # mail_subject = 'Reset your password o.'
+            # message = render_to_string('accounts/reset_password_email.html', {
+            #     'user': user,
+            #     'domain': current_site,
+            #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            #     'token': default_token_generator.make_token(user),
+            # })
+            # to_email = email
+            # send_email = EmailMessage(mail_subject, message, to=[to_email])
+            # send_email.content_subtype = 'html'  # Set email content to HTML
+            # send_email.send()
+
+            ## Trying Resend API
             current_site = get_current_site(request)
-            mail_subject = 'Reset your password.'
             message = render_to_string('accounts/reset_password_email.html', {
                 'user': user,
                 'domain': current_site,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': default_token_generator.make_token(user),
             })
-            to_email = email
-            send_email = EmailMessage(mail_subject, message, to=[to_email])
-            send_email.content_subtype = 'html'  # Set email content to HTML
-            send_email.send()
+            params = {
+                "from": "no-reply@frobarn.com",
+                "to": email,
+                "subject": "Reset your password!",
+                "html": message,
+            }
+
+            resend.Emails.send(params)
+
+
 
             messages.success(request, 'Password reset email sent to your email address')
             return redirect('login')

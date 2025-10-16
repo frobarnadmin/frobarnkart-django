@@ -13,6 +13,7 @@ python-decouple==3.8
 python-dotenv==0.21.1
 pytz==2024.2
 requests==2.31.0
+resend==2.16.0
 six==1.17.0
 sqlparse==0.4.4
 typing_extensions==4.7.1

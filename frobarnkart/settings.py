@@ -201,7 +201,7 @@ MESSAGE_TAGS = {
 
 SITE_NAME = "Frobarn"
 
-if DJANGO_ENV == 'production':
+# if DJANGO_ENV == 'production':
     # SMTP Configuration
 #     EMAIL_HOST = config('EMAIL_HOST')
 #     EMAIL_PORT = config('EMAIL_PORT', cast=int)
@@ -210,9 +210,9 @@ if DJANGO_ENV == 'production':
 #     EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 #     DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="admin@frobarn.com")
 # else:
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_PORT = 587
-    EMAIL_HOST_USER = 'gshyllon@gmail.com'
-    EMAIL_USE_TLS = True
-    EMAIL_HOST_PASSWORD = 'lpsxlwojgnqzeqsb'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'gshyllon@gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = 'lpsxlwojgnqzeqsb'
 
