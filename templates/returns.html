@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- breadcrumb section strats here -->
+    <div class="breadcrumb-section mb-100"
+         style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('{% static "assets/image/inner-page/faqs.png" %}');">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <div class="banner-content style-2 text-center">
+                        <h1>Returns & Refunds</h1>
+                        <ul class="breadcrumb-list">
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><span>/ </span>Return Policy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb section ends here -->
+
+    <!-- our brand section strats here -->
+    <div class="our-brand-section mb-100 wow animate fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="">
+                        <h2>Return Policy</h2>
+                        <p>
+                            Frobarn may allow you to return an Item in limited circumstances.
+                        </p>
+                        <p>
+                            A Buyer may open a formal <a href="" class="">return case</a> with us by going to their purchases and selecting
+                            problems/order inquiry within seventy-two (72) hours from delivery (as determined by the
+                            tracking information on the Label) for any of the following reasons:
+
+                        <ul>
+
+                            <li class="">Undisclosed damage;</li>
+                            <li class="">Incorrect or missing item;</li>
+                            <li class="">Item not as described within the listing; or</li>
+                            <li class="">Item is not authentic.</li>
+
+                        </ul>
+                        </p>
+                        <p class="">
+                            Please note you will not be able to open a formal return case if you have already accepted
+                            the order.
+                        </p>
+                        <p class="">
+                            Trades, offline transactions, items that do not fit, or orders where the Buyer changed their
+                            mind are not covered by Frobarn Protect. These types of purchases are considered final sale
+                            and not eligible for return.
+                        </p>
+                        <p class="">
+                            When a return case is opened, the Buyer must upload photos and provide any additional
+                            details describing the issue as requested by Frobarn support. Frobarn will review the case, and if
+                            the request is approved, Frobarn will provide the Buyer with a label to return the item to the
+                            Seller.
+                        </p>
+                        <p class="">
+                            Once the return has been delivered to the Seller, the Buyer will receive a full refund.
+                            Buyers will receive non-redeemable Frobarn Credits for purchases made entirely, or partially,
+                            with non-redeemable Frobarn Credits.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- our brand section ends here -->
+
+{% endblock %}

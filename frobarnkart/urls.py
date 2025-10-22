@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('faqs/', views.faqs, name='faqs'),
+    path('returns/', views.returns, name='returns'),
     path('support/', views.support, name='support'),
     # path('contact/', views.contact, name='contact'),
     path('store/', include('store.urls')),

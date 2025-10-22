@@ -35,3 +35,7 @@ def support(request):
 def contact(request):
 
     return render(request, 'contact.html')
+
+def returns(request):
+
+    return render(request, 'returns.html')
