@@ -15,8 +15,9 @@ class Brand(models.Model):
     brand_description = models.TextField(blank=True, null=True)
     brand_company_name = models.ForeignKey(
         Tailor,
-        on_delete=models.CASCADE,
-        related_name='brands'
+        on_delete=models.SET_NULL,
+        related_name='brands',
+        null=True,
     )
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -29,7 +30,6 @@ class Brand(models.Model):
         return self.brand_name
 
 class Product(models.Model):
-    # tailor = models.ForeignKey(Tailor, on_delete=models.CASCADE, null=True, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True, blank=True)
     product_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
