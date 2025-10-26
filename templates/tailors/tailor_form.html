@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load form_extras %}
+
+{% block content %}
+
+<section class="section-content padding-y bg">
+{% include 'includes/alerts.html' %}
+<div class="container">
+	<div class="row">
+{% include 'includes/tailor_dashboard_sidebar.html' %}
+	<main class="col-md-9">
+
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="enquiry-section mb-120">
+        <div class="enquiry-form-wrapper style-2">
+          <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {% include "includes/alerts.html" %}
+
+            <div class="form-title"><h4>Update Tailor</h4></div>
+
+            {# non-field errors #}
+            {% if form.non_field_errors %}
+              <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            <div class="row">
+              <div class="col-md-6 mb-15">
+                <div class="form-inner">
+                  <label>{{ form.business_name.label }}</label>
+                  {{ form.business_name|add_class:form.business_name.errors }}
+                  {% for error in form.business_name.errors %}
+                    <small class="text-danger d-block">{{ error }}</small>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-15">
+                <div class="form-inner">
+                  <label>{{ form.brand_name.label }}</label>
+                  {{ form.brand_name|add_class:form.brand_name.errors }}
+                  {% for error in form.brand_name.errors %}
+                    <small class="text-danger d-block">{{ error }}</small>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="col-md-12 mb-15">
+                <div class="form-inner">
+                  <label>{{ form.business_address.label }}</label>
+                  {{ form.business_address|add_class:form.business_address.errors }}
+                  {% for error in form.business_address.errors %}
+                    <small class="text-danger d-block">{{ error }}</small>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-15">
+                <div class="form-inner">
+                  <label>{{ form.business_city.label }}</label>
+                  {{ form.business_city|add_class:form.business_city.errors }}
+                  {% for error in form.business_city.errors %}
+                    <small class="text-danger d-block">{{ error }}</small>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-15">
+                <div class="form-inner">
+                  <label>{{ form.business_state.label }}</label>
+                  {{ form.business_state|add_class:form.business_state.errors }}
+                  {% for error in form.business_state.errors %}
+                    <small class="text-danger d-block">{{ error }}</small>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-15">
+                <div class="form-inner">
+                  <label>{{ form.business_email_address.label }}</label>
+                  {{ form.business_email_address|add_class:form.business_email_address.errors }}
+                  {% for error in form.business_email_address.errors %}
+                    <small class="text-danger d-block">{{ error }}</small>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-15">
+                <div class="form-inner">
+                  <label>{{ form.business_phone_number.label }}</label>
+                  {{ form.business_phone_number|add_class:form.business_phone_number.errors }}
+                  {% for error in form.business_phone_number.errors %}
+                    <small class="text-danger d-block">{{ error }}</small>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-15">
+                <div class="form-inner">
+                  <label>{{ form.maximum_capacity_per_week.label }}</label>
+                  {{ form.maximum_capacity_per_week|add_class:form.maximum_capacity_per_week.errors }}
+                  {% for error in form.maximum_capacity_per_week.errors %}
+                    <small class="text-danger d-block">{{ error }}</small>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-15">
+                <div class="form-inner">
+                  <label>{{ form.local_bank.label }}</label>
+                  {{ form.local_bank|add_class:form.local_bank.errors }}
+                  {% for error in form.local_bank.errors %}
+                    <small class="text-danger d-block">{{ error }}</small>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-15">
+                <div class="form-inner">
+                  <label>{{ form.bank_account_name.label }}</label>
+                  {{ form.bank_account_name|add_class:form.bank_account_name.errors }}
+                  {% for error in form.bank_account_name.errors %}
+                    <small class="text-danger d-block">{{ error }}</small>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-15">
+                <div class="form-inner">
+                  <label>{{ form.bank_account_number.label }}</label>
+                  {{ form.bank_account_number|add_class:form.bank_account_number.errors }}
+                  {% for error in form.bank_account_number.errors %}
+                    <small class="text-danger d-block">{{ error }}</small>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-inner">
+                  <button class="primary-btn" type="submit">Save</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+            <div class="form-remember-forget">
+            <p class="text-center mt-4">
+              Done editing? <a href="{% url 'dashboard' %}">View profile</a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</main>
+</div> <!-- row.// -->
+</div>
+
+
+</section>
+
+{% endblock %}

@@ -92,13 +92,12 @@ class UserProfile(models.Model):
 
 class Tailor(models.Model):
     account = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
     business_name = models.CharField(max_length=255)
     brand_name = models.CharField(max_length=255, default='')
     business_address = models.TextField()
     business_city = models.CharField(max_length=100)
     business_state = models.CharField(max_length=100)
-    email_address = models.EmailField()
+    business_email_address = models.EmailField()
     business_phone_number = models.CharField(max_length=20)
 
     maximum_capacity_per_week = models.PositiveIntegerField()

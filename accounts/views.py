@@ -10,12 +10,13 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.core.mail import EmailMessage
 
-from accounts.forms import RegistrationForm, UserForm, UserProfileForm
+from accounts.forms import RegistrationForm, UserForm, UserProfileForm, TailorForm
 from accounts.models import Account, UserProfile
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
 from frobarnkart import settings
 from orders.models import UserMeasurement
+from .models import Tailor
 
 import requests
 import resend
@@ -345,3 +346,44 @@ def my_measurements(request):
         'measurements': measurements,
     }
     return render(request, 'accounts/my_measurements.html', context)
+
+@login_required(login_url='login')
+def create_tailor(request):
+
+    if Tailor.objects.filter(account=request.user).exists():
+        return redirect("dashboard")  # or wherever
+
+    if request.method == "POST":
+        form = TailorForm(request.POST)
+        if form.is_valid():
+            tailor = form.save(commit=False)
+            tailor.account = request.user  # Auto-populate the logged-in user
+            tailor.save()
+            return redirect('dashboard')  # ✅ update to your actual success URL
+    else:
+        form = TailorForm()
+
+    return render(request, 'tailors/create_tailor.html', {'form': form})
+
+@login_required(login_url='login')
+def edit_tailor(request):
+    """
+    Let the logged-in user edit their Tailor record.
+    If it doesn't exist yet, send them to the create page.
+    """
+    try:
+        tailor = Tailor.objects.get(account=request.user)
+    except Tailor.DoesNotExist:
+        messages.info(request, "Please register your tailor profile first.")
+        return redirect("create_tailor")  # your create view name
+
+    if request.method == "POST":
+        form = TailorForm(request.POST, instance=tailor)
+        if form.is_valid():
+            form.save()  # account stays unchanged
+            messages.success(request, "Your profile was updated.")
+            return redirect("dashboard")  # page that shows the profile
+    else:
+        form = TailorForm(instance=tailor)
+
+    return render(request, "tailors/tailor_form.html", {"form": form, "title": "Edit Tailor"})
