@@ -19,4 +19,5 @@ urlpatterns = [
     path('order_detail/<int:order_id>/', views.order_detail, name='order_detail'),
     path('tailor/register/', views.create_tailor, name='create_tailor'),
     path("tailor/edit/", views.edit_tailor, name="edit_tailor"),
+    path('tailor/agreement/', views.tailor_agreement, name='tailor_agreement'),
 ]

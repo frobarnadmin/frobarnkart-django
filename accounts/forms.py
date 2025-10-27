@@ -101,3 +101,9 @@ class TailorForm(forms.ModelForm):
         }
         for f, lbl in labels.items():
             self.fields[f].label = lbl
+
+class TailorAgreementForm(forms.Form):
+    agree = forms.BooleanField(
+        required=True,
+        label="I agree to onboard as a Tailor on the Frobarn Platform and accept the Terms & Privacy Policy."
+    )

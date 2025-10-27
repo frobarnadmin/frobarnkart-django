@@ -387,3 +387,23 @@ def edit_tailor(request):
         form = TailorForm(instance=tailor)
 
     return render(request, "tailors/tailor_form.html", {"form": form, "title": "Edit Tailor"})
+
+from .forms import TailorAgreementForm
+
+@login_required(login_url='login')
+def tailor_agreement(request):
+    # If already a tailor, send them to the dashboard
+    if request.user.is_tailor:
+        return redirect('dashboard')
+
+    if request.method == "POST":
+        form = TailorAgreementForm(request.POST)
+        if form.is_valid():
+            request.user.is_tailor = True
+            request.user.save(update_fields=["is_tailor"])
+            messages.success(request, "Welcome aboard! Your tailor account is active.")
+            return redirect('dashboard')
+    else:
+        form = TailorAgreementForm()
+
+    return render(request, "accounts/tailor_agreement.html", {"form": form})

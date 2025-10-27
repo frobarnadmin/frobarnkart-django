@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{# templates/accounts/tailor_agreement.html #}
+{% load static %}
+    <div class="faq-section mb-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-10">
+                    <div class="faq-wrap">
+                        <div class="accordion" id="accordionGeneral">
+                            <div class="accordion-item wow animate fadeInDown" data-wow-delay="100ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 100ms;">
+                                <h2 class="accordion-header" id="faqheadingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqcollapseOne" aria-expanded="true" aria-controls="faqcollapseOne">
+                                        Join as a Tailor
+                                    </button>
+                                </h2>
+                                <div id="faqcollapseOne" class="accordion-collapse collapse show" aria-labelledby="faqheadingOne" data-bs-parent="#accordionGeneral">
+                                    <div class="accordion-body">
+                                        <p class="text-muted">
+    To proceed, please confirm you agree to onboard as a Tailor on the Frobarn Platform.
+  </p>
+
+  <form method="post" class="card p-4 mt-3" style="border:1px solid #e5e7eb;border-radius:12px;">
+    {% csrf_token %}
+    <div class="form-check mb-3">
+      {{ form.agree.errors }}
+      <input class="form-check-input" type="checkbox" id="id_agree" name="agree" {% if form.agree.value %}checked{% endif %}>
+      <label class="form-check-label" for="id_agree">
+        I agree to onboard as a Tailor on Frobarn and accept the
+        <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
+{#          <a href="{% url 'terms' %}">Terms</a> and <a href="{% url 'privacy' %}">Privacy Policy</a>.#}
+      </label>
+    </div>
+    <button type="submit" class="primary-btn2 load-more">Agree & Continue to Dashboard</button>
+  </form>
+
+  <p class="mt-3 small text-muted">
+    Already a tailor? <a href="{% url 'dashboard' %}">Go to your dashboard</a>.
+  </p>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
