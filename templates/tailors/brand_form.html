@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <section class="section-content padding-y bg">
+        {% include 'includes/alerts.html' %}
+        <div class="container">
+            <div class="row">
+                {% include 'includes/tailor_dashboard_sidebar.html' %}
+                <main class="col-md-9">
+                <div class="enquery-section mb-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="enquery-form-wrapper style-2">
+
+                    {# EDIT TAILOR FORM #}
+{#                    <div class="row">#}
+{#                        <div class="col-lg-12">#}
+{#                            <div class="enquiry-section mb-120">#}
+{##}
+{##}
+{# #}
+                            <div class="form-title">
+                                <h4>Create Your Brand</h4>
+                            </div>
+  <p class="text-muted">Your tailor account will be linked automatically.</p>
+
+  <form method="post" enctype="multipart/form-data" class="border rounded p-3">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <div class="mb-3 form-inner">
+      <label class="form-label">Brand name <span>*</span> </label>
+      {{ form.brand_name }}
+      {% for e in form.brand_name.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+    </div>
+
+    <div class="mb-3 form-inner">
+      <label class="form-label">Brand logo <span>*</span></label>
+      {{ form.brand_image_logo }}
+      {% for e in form.brand_image_logo.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+      <div class="form-text">PNG/JPG preferred.</div>
+    </div>
+
+    <div class="mb-3 form-inner">
+      <label class="form-label">Description <span>*</span> </label>
+      {{ form.brand_description }}
+      {% for e in form.brand_description.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+    </div>
+
+{#    <div class="form-check mb-3">#}
+{#      {{ form.is_active }} <label class="form-check-label">Active</label>#}
+{#      {% for e in form.is_active.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}#}
+{#    </div>#}
+
+    <button type="submit" class="primary-btn">Save brand</button>
+    <a href="{% url 'dashboard' %}" class="primary-btn2">Cancel</a>
+  </form>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+        </div>
+                </div>
+
+
+                </main>
+            </div> <!-- row.// -->
+        </div>
+
+
+    </section>
+
+{% endblock %}

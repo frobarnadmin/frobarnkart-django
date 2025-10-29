@@ -11,9 +11,13 @@ from carts.models import CartItem
 from category.models import Category
 from carts.views import _cart_id
 from orders.models import OrderProduct
-from .forms import ReviewForm
+from .forms import ReviewForm, BrandCreateForm
 from .models import Product, ReviewRating, ProductGallery, Brand
-from .forms import ReviewForm
+
+
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+from accounts.models import Tailor
 
 
 # Create your views here.
@@ -131,3 +135,36 @@ def submit_review(request, product_id):
                 data.save()
                 messages.success(request, 'Thank you! Your review has been submitted successfully')
                 return redirect(url)
+
+
+@login_required
+def brand_create(request):
+    # Guard: only tailors
+    if not getattr(request.user, "is_tailor", False):
+        raise PermissionDenied("Only tailors can create brands.")
+
+    # Optional rule: allow only ONE brand per tailor (toggle to fit your policy)
+    tailor = Tailor.objects.filter(account=request.user).first()
+    if not tailor:
+        messages.error(request, "Please complete your tailor profile first.")
+        return redirect("dashboard")  # or wherever the tailor completes profile
+
+    # If one-per-tailor, uncomment:
+    # if Brand.objects.filter(brand_company_name=tailor).exists():
+    #     messages.info(request, "You already have a brand. You can update it instead.")
+    #     return redirect("dashboard")
+
+    if request.method == "POST":
+        form = BrandCreateForm(request.POST, request.FILES, request=request)
+        if form.is_valid():
+            brand = form.save()
+            messages.success(request, "Your brand was created successfully!")
+            # send them to brand detail if you have it; else dashboard
+            try:
+                return redirect("brand_detail", slug=brand.slug)
+            except Exception:
+                return redirect("dashboard")
+    else:
+        form = BrandCreateForm(request=request)
+
+    return render(request, "tailors/brand_form.html", {"form": form})
